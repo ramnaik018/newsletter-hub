@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsletter Hub — Ramnaik Guguloth</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-primary: #0b1120;
+        --bg-secondary: rgba(15, 23, 42, 0.8);
+        --bg-card: rgba(15, 23, 42, 0.6);
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --accent: #5eead4;
+        --accent-light: #99f6e4;
+        --accent-bg: rgba(94, 234, 212, 0.08);
+        --green: #34d399;
+        --green-bg: rgba(52, 211, 153, 0.1);
+        --yellow: #fbbf24;
+        --yellow-bg: rgba(251, 191, 36, 0.1);
+        --coral: #fb7185;
+        --teal: #5eead4;
+        --border: rgba(94, 234, 212, 0.1);
+        --glass: rgba(15, 23, 42, 0.6);
+        --glass-border: rgba(94, 234, 212, 0.08);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+        --radius: 20px;
+        --radius-sm: 14px;
+      }
+
+      #bg-canvas { display: none; }
+
+      @keyframes gradientShift {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(3deg); }
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.05); }
+      }
+
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 300;
+        background: rgb(20, 25, 34);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before { display: none; }
+
+      .container {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        animation: slideUp 0.6s ease-out;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        margin-top: -48px;
+        padding: 66px 24px 55px;
+        background: linear-gradient(180deg, #050d1a 0%, rgb(20, 25, 34) 100%);
+        border-bottom: 1px solid rgba(94, 234, 212, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(to bottom, white 0%, white 40%, transparent 85%);
+        mask-image: linear-gradient(to bottom, white 0%, white 40%, transparent 85%);
+      }
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 30%;
+        background:
+          radial-gradient(ellipse 80% 60% at 25% 40%, rgba(63, 55, 120, 0.25) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 70% at 75% 30%, rgba(30, 60, 114, 0.22) 0%, transparent 55%),
+          radial-gradient(ellipse 60% 40% at 60% 80%, rgba(94, 234, 212, 0.04) 0%, transparent 50%),
+          radial-gradient(ellipse 30% 30% at 40% 60%, rgba(139, 92, 246, 0.07) 0%, transparent 50%);
+        pointer-events: none;
+      }
+
+      .header h1 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 5em;
+        font-weight: 400;
+        margin-bottom: 14px;
+        color: #f1f5f9;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .header .tagline {
+        font-size: 1.05em;
+        color: rgba(148, 163, 184, 0.8);
+        margin-bottom: 20px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .header .author {
+        font-size: 0.9em;
+        color: var(--text-muted);
+        position: relative;
+        z-index: 1;
+      }
+
+      .header .author a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .header .author a:hover {
+        color: var(--accent-light);
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+
+      .tab-btn {
+        padding: 12px 32px;
+        border: 2px solid var(--border);
+        border-radius: 30px;
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        color: var(--text-secondary);
+        font-size: 0.9em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .tab-btn:hover {
+        border-color: var(--accent-light);
+        color: var(--accent);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .tab-btn.active {
+        background: linear-gradient(135deg, rgba(94, 234, 212, 0.15), rgba(94, 234, 212, 0.05));
+        border-color: var(--accent);
+        color: var(--accent);
+        box-shadow: 0 0 20px rgba(94, 234, 212, 0.15);
+        transform: translateY(-1px);
+      }
+
+      /* Progress */
+      .progress-section {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        border-radius: var(--radius);
+        padding: 26px 30px;
+        margin-bottom: 32px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--glass-border);
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .progress-header h3 {
+        font-size: 0.9em;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .progress-header .count {
+        font-size: 0.9em;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .progress-bar {
+        height: 10px;
+        background: rgba(94, 234, 212, 0.06);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #5eead4, #2dd4bf, #fbbf24);
+        border-radius: 5px;
+        transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Latest Edition */
+      .latest-section {
+        margin-bottom: 36px;
+      }
+
+      .section-label {
+        font-size: 0.72em;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+        font-weight: 700;
+      }
+
+      .latest-card {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border: 1px solid rgba(94, 234, 212, 0.15);
+        border-radius: var(--radius);
+        padding: 36px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        color: #e2e8f0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .latest-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg at 50% 50%,
+          rgba(94, 234, 212, 0.4) 0deg,
+          rgba(251, 191, 36, 0.3) 60deg,
+          transparent 120deg,
+          rgba(94, 234, 212, 0.3) 180deg,
+          rgba(99, 102, 241, 0.25) 240deg,
+          transparent 300deg,
+          rgba(94, 234, 212, 0.4) 360deg
+        );
+        animation: gradientShift 12s linear infinite;
+        pointer-events: none;
+      }
+
+      .latest-card::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        right: 1px;
+        bottom: 1px;
+        background:
+          radial-gradient(ellipse 80% 50% at 20% 80%, rgba(94, 234, 212, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 70% at 80% 20%, rgba(251, 191, 36, 0.06) 0%, transparent 50%),
+          radial-gradient(ellipse 90% 40% at 60% 90%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+          linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+        animation: innerWave 8s ease-in-out infinite;
+        border-radius: calc(var(--radius) - 1px);
+        z-index: 0;
+      }
+
+      @keyframes innerWave {
+        0% { background-position: 0% 50%, 100% 0%, 50% 100%, 0% 0%; }
+        33% { background-position: 100% 80%, 0% 100%, 100% 0%, 0% 0%; }
+        66% { background-position: 50% 0%, 80% 50%, 0% 50%, 0% 0%; }
+        100% { background-position: 0% 50%, 100% 0%, 50% 100%, 0% 0%; }
+      }
+
+      .latest-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .latest-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(94, 234, 212, 0.3);
+        box-shadow: 0 8px 32px rgba(94, 234, 212, 0.1);
+      }
+
+      @keyframes latestGlow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+
+      .latest-card .edition-num {
+        font-size: 0.8em;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .latest-card h2 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1.6em;
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: #e2e8f0;
+      }
+
+      .latest-card .hook {
+        color: var(--text-secondary);
+        margin-bottom: 22px;
+        font-style: italic;
+        font-size: 0.95em;
+      }
+
+      .latest-card .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .latest-card .date {
+        font-size: 0.85em;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .read-btn {
+        display: inline-block;
+        padding: 11px 26px;
+        background: transparent;
+        color: var(--accent);
+        text-decoration: none;
+        border-radius: 26px;
+        font-size: 0.85em;
+        font-weight: 500;
+        transition: all 0.3s;
+        border: 1px solid var(--accent);
+      }
+
+      .read-btn:hover {
+        background: rgba(94, 234, 212, 0.1);
+        transform: scale(1.03);
+      }
+
+      /* Coming Up */
+      .upcoming-section {
+        margin-bottom: 36px;
+      }
+
+      .upcoming-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .upcoming-card {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-sm);
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .upcoming-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+
+      .upcoming-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
+      }
+
+      .upcoming-card .edition-num {
+        font-size: 0.73em;
+        color: var(--yellow);
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+      }
+
+      .upcoming-card h3 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1em;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .upcoming-card .hook {
+        font-size: 0.84em;
+        color: var(--text-secondary);
+        font-style: italic;
+        line-height: 1.55;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 16px;
+        font-size: 0.66em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 14px;
+      }
+
+      .badge-soon {
+        background: rgba(251, 191, 36, 0.1);
+        color: var(--yellow);
+      }
+
+      .badge-writing {
+        background: var(--accent-bg);
+        color: var(--accent);
+      }
+
+      /* Blocks */
+      .blocks-section {
+        margin-bottom: 36px;
+      }
+
+      .block {
+        margin-bottom: 14px;
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s;
+      }
+
+      .block:hover {
+        box-shadow: var(--shadow-md);
+        border-color: rgba(124, 58, 237, 0.15);
+      }
+
+      .block-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 24px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .block-header:hover {
+        background: rgba(94, 234, 212, 0.03);
+      }
+
+      .block-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .block-header h3 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1em;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .block-progress {
+        font-size: 0.8em;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .block-progress-bar {
+        width: 60px;
+        height: 5px;
+        background: rgba(94, 234, 212, 0.08);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .block-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #5eead4, #2dd4bf);
+        border-radius: 3px;
+      }
+
+      .block-chevron {
+        color: var(--text-muted);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 0.8em;
+      }
+
+      .block.open .block-chevron {
+        transform: rotate(180deg);
+      }
+
+      .block-content {
+        display: none;
+        padding: 8px 18px 18px;
+        background: rgba(11, 17, 32, 0.4);
+      }
+
+      .block.open .block-content {
+        display: block;
+      }
+
+      .edition-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px;
+        border-radius: var(--radius-sm);
+        transition: all 0.2s;
+      }
+
+      .edition-item:hover {
+        background: rgba(94, 234, 212, 0.03);
+        box-shadow: var(--shadow-sm);
+        transform: translateX(4px);
+      }
+
+      .edition-status {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72em;
+        flex-shrink: 0;
+        margin-top: 2px;
+        font-weight: 700;
+      }
+
+      .status-published {
+        background: var(--green-bg);
+        color: var(--green);
+        box-shadow: 0 0 8px rgba(52, 211, 153, 0.2);
+      }
+
+      .status-writing {
+        background: var(--accent-bg);
+        color: var(--accent);
+      }
+
+      .status-planned {
+        background: rgba(100, 116, 139, 0.1);
+        color: var(--text-muted);
+      }
+
+      .edition-info {
+        flex: 1;
+      }
+
+      .edition-info .num {
+        font-size: 0.73em;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .edition-info h4 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 0.95em;
+        font-weight: 400;
+        margin: 3px 0;
+        color: var(--text-primary);
+      }
+
+      .edition-info .hook {
+        font-size: 0.82em;
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+
+      .edition-info .date {
+        font-size: 0.73em;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .edition-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.82em;
+        font-weight: 500;
+        white-space: nowrap;
+        align-self: center;
+        padding: 6px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(94, 234, 212, 0.2);
+        transition: all 0.3s;
+      }
+
+      .edition-link:hover {
+        background: rgba(94, 234, 212, 0.1);
+        border-color: var(--accent);
+      }
+
+      .planned-text {
+        font-size: 0.73em;
+        color: var(--text-muted);
+        align-self: center;
+        font-style: italic;
+      }
+
+      /* Footer CTA */
+      .footer-cta {
+        text-align: center;
+        padding: 48px 32px;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: var(--radius);
+        border: 1px solid rgba(94, 234, 212, 0.1);
+        margin-top: 48px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-cta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.4), rgba(251, 191, 36, 0.3), transparent);
+      }
+
+      .footer-cta h3 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        font-weight: 400;
+        color: var(--text-primary);
+      }
+
+      .footer-cta p {
+        color: var(--text-secondary);
+        margin-bottom: 26px;
+        font-size: 0.95em;
+      }
+
+      .footer-cta .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn {
+        padding: 13px 30px;
+        border-radius: 30px;
+        font-size: 0.9em;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .cta-btn-primary {
+        background: transparent;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+      }
+
+      .cta-btn-primary:hover {
+        background: rgba(94, 234, 212, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .cta-btn-secondary {
+        background: transparent;
+        color: var(--yellow);
+        border: 1px solid rgba(251, 191, 36, 0.4);
+      }
+
+      .cta-btn-secondary:hover {
+        border-color: var(--yellow);
+        background: rgba(251, 191, 36, 0.08);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 28px;
+        color: var(--text-muted);
+        font-size: 0.82em;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container { padding: 28px 16px; }
+        .header { padding: 60px 16px 48px; margin-top: -28px; margin-left: -16px; margin-right: -16px; }
+        .header h1 { font-size: 2em; }
+        .header .tagline { font-size: 0.92em; }
+        .tabs { gap: 6px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; font-size: 0.84em; }
+        .latest-card { padding: 24px; }
+        .latest-card h2 { font-size: 1.2em; }
+        .latest-card .hook { font-size: 0.92em; }
+        .upcoming-grid { grid-template-columns: 1fr; }
+        .footer-cta { padding: 32px 20px; }
+        section { margin-bottom: 36px; }
+      }
+
+      @media (max-width: 400px) {
+        .header h1 { font-size: 1.6em; }
+        .tab-btn { padding: 8px 14px; font-size: 0.8em; }
+        .latest-card { padding: 18px; }
+        .latest-card h2 { font-size: 1.05em; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <header class="header">
+        <canvas class="header-stars" id="header-stars"></canvas>
+        <h1>Newsletter Hub</h1>
+        <p class="tagline">
+          Making complex topics click — one edition at a time
+        </p>
+        <p class="author">
+          by <a href="#" id="author-link" target="_blank">Ramnaik Guguloth</a>
+        </p>
+      </header>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="ml">AI / ML / GenAI</button>
+        <button class="tab-btn" data-tab="finance">
+          Finance & Wall Street
+        </button>
+      </div>
+
+      <section class="progress-section">
+        <div class="progress-header">
+          <h3 id="progress-label">Overall Progress</h3>
+          <span class="count" id="progress-count">0/0 Published</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+      </section>
+
+      <section class="latest-section" id="latest-section">
+        <p class="section-label">Latest Edition</p>
+        <div class="latest-card" id="latest-card"></div>
+      </section>
+
+      <section class="upcoming-section" id="upcoming-section">
+        <p class="section-label">Coming Up Next</p>
+        <div class="upcoming-grid" id="upcoming-grid"></div>
+      </section>
+
+      <section class="blocks-section" id="blocks-section">
+        <p class="section-label">All Editions</p>
+        <div id="blocks-container"></div>
+      </section>
+
+      <section class="footer-cta">
+        <h3>Follow the Journey</h3>
+        <p>New editions every week. Subscribe to never miss one.</p>
+        <div class="cta-buttons">
+          <a href="#" class="cta-btn cta-btn-primary" id="subscribe-btn" target="_blank"
+            >Subscribe on LinkedIn</a
+          >
+          <a href="#" class="cta-btn cta-btn-secondary" id="profile-btn" target="_blank"
+            >View Profile</a
+          >
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Built with curiosity. Updated with every new edition.</p>
+      </footer>
+    </div>
+
+    <script id="fallback-ml" type="application/json">
+{"id":"ml","name":"AI / ML / GenAI","description":"Breaking down AI, ML & GenAI — no jargon, just intuition","blocks":[{"name":"ML Foundations","editions":[{"number":1,"title":"AI vs ML vs DL: What's the Difference?","hook":"Everyone uses these terms interchangeably. They shouldn't.","status":"published","linkedin_url":"https://www.linkedin.com/pulse/edition-1-ai-ml-dl-why-matters-you-guguloth-ramnaik-btbxc/?trackingId=EacGnzXUSbSsaGLdAxn8qQ%3D%3D","published_date":"2026-04-14"},{"number":2,"title":"The ABCs of Machine Learning","hook":"Metrics, train/test splits, linear models, and feature engineering — the nuts and bolts.","status":"published","linkedin_url":"https://www.linkedin.com/pulse/edition-2-nuts-bolts-machine-learning-guguloth-ramnaik-7sn5c/?trackingId=moegxf0YSDWd27wiCmkVTQ%3D%3D","published_date":"2026-04-21"},{"number":3,"title":"The Confusion Matrix: When 95% Accuracy Means Nothing","hook":"A fraud detector with 99% accuracy that catches zero frauds. How?","status":"published","linkedin_url":"https://www.linkedin.com/pulse/edition-3-confusion-matrix-why-accuracy-alone-lie-guguloth-ramnaik-mkznc/?trackingId=2FPPVfOvRoy8QhYyFD41%2BA%3D%3D","published_date":"2026-04-28"},{"number":4,"title":"Gradient Descent & Partial Derivatives","hook":"Brute force takes longer than the age of the universe. Calculus takes seconds.","status":"published","linkedin_url":"https://www.linkedin.com/pulse/edition-4-gradient-descent-math-makes-machines-learn-ramnaik-zzflc/?trackingId=2L3sFUlvTgaFHZCFrHKAZw%3D%3D","published_date":"2026-05-05"}]},{"name":"Deep Learning Foundations","editions":[{"number":5,"title":"From Linear Models to Neural Networks","hook":"A linear model is just one neuron. Stack hundreds — now you have a brain.","status":"planned","linkedin_url":null,"published_date":null},{"number":6,"title":"Training a Neural Network: Backpropagation","hook":"Gradient descent for one layer was easy. For 50 layers? That's backprop.","status":"planned","linkedin_url":null,"published_date":null},{"number":7,"title":"Neural Network Architecture Decisions","hook":"How many layers? How many neurons? Here's how to think about it.","status":"planned","linkedin_url":null,"published_date":null},{"number":8,"title":"Overfitting in Deep Learning","hook":"Your neural net memorized 50,000 images perfectly. It still can't recognize a cat.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Computer Vision","editions":[{"number":9,"title":"CNNs: How Machines See Images","hook":"An image is just a matrix of numbers. A CNN finds patterns — edges, shapes, faces.","status":"planned","linkedin_url":null,"published_date":null},{"number":10,"title":"CNN Architectures: LeNet to ResNet","hook":"In 2012, a CNN beat humans at image recognition. Here's what changed.","status":"planned","linkedin_url":null,"published_date":null},{"number":11,"title":"Transfer Learning & Practical CV","hook":"Why train from scratch when someone already trained on 14 million images?","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"NLP — From Text to Intelligence","editions":[{"number":12,"title":"Classic NLP: Bag of Words & TF-IDF","hook":"Before ChatGPT, machines counted words. Literally.","status":"planned","linkedin_url":null,"published_date":null},{"number":13,"title":"Word Embeddings: Meaning as Numbers","hook":"king - man + woman = queen. That equation works because of embeddings.","status":"planned","linkedin_url":null,"published_date":null},{"number":14,"title":"RNNs & LSTMs: When Order Matters","hook":"'Dog bites man' vs 'man bites dog' — same words, opposite meaning.","status":"planned","linkedin_url":null,"published_date":null},{"number":15,"title":"The Attention Mechanism","hook":"Instead of compressing a sentence into one vector, let the model look back.","status":"planned","linkedin_url":null,"published_date":null},{"number":16,"title":"Transformers: The Architecture Behind Everything","hook":"RNNs process words one by one. Transformers process ALL simultaneously.","status":"planned","linkedin_url":null,"published_date":null},{"number":17,"title":"Tokenization Deep Dive: BPE & Tiktoken","hook":"GPT doesn't read words. It reads chunks. 'unfortunately' = 'un' + 'fortunate' + 'ly'.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"LLMs & GenAI Core","editions":[{"number":18,"title":"How LLMs Are Trained: Pretraining & Scaling","hook":"GPT-4 read the entire internet. Here's what 'training' means at that scale.","status":"planned","linkedin_url":null,"published_date":null},{"number":19,"title":"RLHF: How ChatGPT Became Helpful","hook":"Raw GPT is a text predictor. RLHF turned it into an assistant.","status":"planned","linkedin_url":null,"published_date":null},{"number":20,"title":"Prompt Engineering","hook":"The difference between a useless answer and a brilliant one? How you asked.","status":"planned","linkedin_url":null,"published_date":null},{"number":21,"title":"Function Calling & Structured Outputs","hook":"LLMs can't browse the web alone. Function calling gives them tools.","status":"planned","linkedin_url":null,"published_date":null},{"number":22,"title":"Embeddings for Search & RAG","hook":"How does ChatGPT 'know' your uploaded PDF? It doesn't. It searches it.","status":"planned","linkedin_url":null,"published_date":null},{"number":23,"title":"RAG: Retrieval Augmented Generation","hook":"LLMs hallucinate. RAG forces them to answer from YOUR data.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Building & Deploying GenAI","editions":[{"number":24,"title":"Evaluating GenAI Applications","hook":"Your chatbot answers questions. But is it answering CORRECTLY?","status":"planned","linkedin_url":null,"published_date":null},{"number":25,"title":"Fine-Tuning LLMs: LoRA & QLoRA","hook":"OpenAI's model is generic. YOUR model should know YOUR domain.","status":"planned","linkedin_url":null,"published_date":null},{"number":26,"title":"Distillation & Quantization","hook":"GPT-4 costs $0.03 per query. A distilled model costs $0.0001.","status":"planned","linkedin_url":null,"published_date":null},{"number":27,"title":"AI Agents: LLMs That Take Actions","hook":"A chatbot answers questions. An agent books your flight and sends the email.","status":"planned","linkedin_url":null,"published_date":null},{"number":28,"title":"MCP & Advanced LLM Patterns","hook":"Model Context Protocol: the USB-C of AI — one standard to connect LLMs to anything.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Production & Career","editions":[{"number":29,"title":"Deploying GenAI: FastAPI + Docker","hook":"Your Jupyter notebook doesn't serve 1000 users. Here's how to actually deploy.","status":"planned","linkedin_url":null,"published_date":null},{"number":30,"title":"LLM System Design","hook":"Interviewer: 'Design a support chatbot for a bank.' Here's how to answer.","status":"planned","linkedin_url":null,"published_date":null},{"number":31,"title":"The GenAI Engineer Toolkit","hook":"LangChain, LlamaIndex, vector DBs — the stack that gets you hired.","status":"planned","linkedin_url":null,"published_date":null},{"number":32,"title":"GenAI in Finance","hook":"Document processing, risk models, robo-advisors — the real use cases.","status":"planned","linkedin_url":null,"published_date":null}]}]}
+    </script>
+    <script id="fallback-finance" type="application/json">
+{"id":"finance","name":"Finance & Wall Street","description":"Making Wall Street concepts intuitive for tech people entering finance","blocks":[{"name":"How Money Moves","editions":[{"number":1,"title":"What Do Investment Banks Actually DO?","hook":"They don't invest. They advise. Here's the real business model.","status":"planned","linkedin_url":null,"published_date":null},{"number":2,"title":"M&A: How a Company Gets Sold","hook":"30 buyers, blind bids, competitive tension — billion-dollar stakes.","status":"planned","linkedin_url":null,"published_date":null},{"number":3,"title":"IPO: From Private to Public","hook":"The journey from startup to stock ticker — and why banks charge millions.","status":"planned","linkedin_url":null,"published_date":null},{"number":4,"title":"Debt vs Equity: How Companies Raise Money","hook":"Why would a profitable company borrow? Because it's cheaper than selling ownership.","status":"planned","linkedin_url":null,"published_date":null},{"number":5,"title":"The Buy Side vs Sell Side","hook":"Two sides of finance that confuse everyone — explained in 5 minutes.","status":"planned","linkedin_url":null,"published_date":null},{"number":6,"title":"How Banks Actually Make Money","hook":"A 0.5% fee on a $10B deal = $50M. That's the business.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Valuation — How Everything Gets a Price","editions":[{"number":7,"title":"DCF: Discounting the Future","hook":"A company is worth its future cash flows, discounted to today.","status":"planned","linkedin_url":null,"published_date":null},{"number":8,"title":"Comparable Companies (Comps)","hook":"Netflix is worth what? Look at what Disney and Warner trade at.","status":"planned","linkedin_url":null,"published_date":null},{"number":9,"title":"Enterprise Value vs Equity Value","hook":"The most asked interview question at Goldman — and why it confuses everyone.","status":"planned","linkedin_url":null,"published_date":null},{"number":10,"title":"EBITDA: The Metric Bankers Worship","hook":"Why not just use profit? Because EBITDA strips out the noise.","status":"planned","linkedin_url":null,"published_date":null},{"number":11,"title":"Multiples: P/E, EV/EBITDA, EV/Revenue","hook":"One number that tells you if a stock is cheap or expensive.","status":"planned","linkedin_url":null,"published_date":null},{"number":12,"title":"LBO: How Private Equity Buys with Debt","hook":"Buy a company with 70% borrowed money, fix it, sell for 3x. That's PE.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"The Three Financial Statements","editions":[{"number":13,"title":"Income Statement: The Report Card","hook":"Revenue → expenses → profit. But which profit? There are 5 types.","status":"planned","linkedin_url":null,"published_date":null},{"number":14,"title":"Balance Sheet: The Snapshot","hook":"Assets = Liabilities + Equity. The equation that runs all of finance.","status":"planned","linkedin_url":null,"published_date":null},{"number":15,"title":"Cash Flow Statement: The Truth Teller","hook":"A profitable company can go bankrupt. Cash flow tells you why.","status":"planned","linkedin_url":null,"published_date":null},{"number":16,"title":"How the 3 Statements Link Together","hook":"Change one number → all three statements change. Here's exactly how.","status":"planned","linkedin_url":null,"published_date":null},{"number":17,"title":"Reading Real Financials (TCS/Reliance)","hook":"Let's open TCS's actual annual report and decode it line by line.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Markets & Products","editions":[{"number":18,"title":"Stocks, Bonds, Derivatives — The Building Blocks","hook":"Three instruments. Every other product is built from these.","status":"planned","linkedin_url":null,"published_date":null},{"number":19,"title":"How the Stock Market Actually Works","hook":"When you click 'buy' on Zerodha, here's what happens in 0.003 seconds.","status":"planned","linkedin_url":null,"published_date":null},{"number":20,"title":"Mutual Funds, ETFs, PMS, AIF","hook":"The hierarchy of investment products in India — and who buys what.","status":"planned","linkedin_url":null,"published_date":null},{"number":21,"title":"Risk: Alpha, Beta, Sharpe, Drawdown","hook":"Four numbers that tell you if a portfolio manager is actually good.","status":"planned","linkedin_url":null,"published_date":null},{"number":22,"title":"Interest Rates: How RBI/Fed Controls Everything","hook":"One number changes → every asset in the world reprices.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"Roles, Workflows & Structure","editions":[{"number":23,"title":"A Day in the Life: IB Analyst vs Quant vs PM","hook":"Three finance jobs, three completely different realities.","status":"planned","linkedin_url":null,"published_date":null},{"number":24,"title":"How a Deal Gets Done: Inside an M&A","hook":"From pitch to close — the 6-month marathon nobody tells you about.","status":"planned","linkedin_url":null,"published_date":null},{"number":25,"title":"Trading Floor: How Market Making Works","hook":"You don't bet on stocks. You provide liquidity. The spread is your profit.","status":"planned","linkedin_url":null,"published_date":null},{"number":26,"title":"Wealth Management: How the Rich Invest","hook":"HNIs don't buy mutual funds on Groww. Here's what they actually do.","status":"planned","linkedin_url":null,"published_date":null},{"number":27,"title":"Fund Structures: PE, VC, Hedge Fund, AM","hook":"All 'buy side' but completely different animals.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"AI + Finance — The Intersection","editions":[{"number":28,"title":"How JPMorgan Uses AI Internally","hook":"DocLLM, IndexGPT, COiN — $12B tech budget doing what?","status":"planned","linkedin_url":null,"published_date":null},{"number":29,"title":"AI in Wealth Management: Robo-Advisors","hook":"From Wealthfront to internal tools — how AI manages money.","status":"planned","linkedin_url":null,"published_date":null},{"number":30,"title":"NLP in Finance: Reading Documents at Scale","hook":"CAS statements, annual reports — how machines process them.","status":"planned","linkedin_url":null,"published_date":null},{"number":31,"title":"AI for Risk & Compliance","hook":"AML, KYC, fraud detection — where AI saves banks billions.","status":"planned","linkedin_url":null,"published_date":null},{"number":32,"title":"Algorithmic Trading & Quant Strategies","hook":"How math PhDs and Python replaced gut-feel traders.","status":"planned","linkedin_url":null,"published_date":null},{"number":33,"title":"The Future: What Finance Jobs Are AI-Proof?","hook":"An honest breakdown of what gets automated and what doesn't.","status":"planned","linkedin_url":null,"published_date":null}]},{"name":"India-Specific Finance","editions":[{"number":34,"title":"SEBI: The Watchdog of Indian Markets","hook":"One regulator, 50+ circulars per year — how SEBI shapes everything.","status":"planned","linkedin_url":null,"published_date":null},{"number":35,"title":"Indian AMC Business: Behind the Scenes","hook":"What happens between your SIP click and your NAV update.","status":"planned","linkedin_url":null,"published_date":null},{"number":36,"title":"UPI, NPCI & India's Payment Revolution","hook":"How India built the world's most advanced payment system.","status":"planned","linkedin_url":null,"published_date":null},{"number":37,"title":"Indian Startup Ecosystem: VC/PE Landscape","hook":"From angel to IPO — how Indian startups get funded.","status":"planned","linkedin_url":null,"published_date":null},{"number":38,"title":"GST, TDS & Corporate Tax","hook":"The tax stack every Indian company navigates.","status":"planned","linkedin_url":null,"published_date":null}]}]}
+    </script>
+
+    <script>
+      const PROFILE = {
+        name: "Ramnaik Guguloth",
+        linkedin_url: "https://www.linkedin.com/in/ramnaik-guguloth/",
+        subscribe_urls: {
+          ml: "https://www.linkedin.com/newsletters/gen-ai-weekly-7450980229713403904/",
+          finance:
+            "https://www.linkedin.com/newsletters/capital-code-7458829024820183040/",
+        },
+      };
+
+      let newsletters = {};
+      let activeTab = "ml";
+
+      async function loadJSON(file) {
+        try {
+          const res = await fetch("./" + file);
+          if (!res.ok) return null;
+          return await res.json();
+        } catch (e) {
+          return null;
+        }
+      }
+
+      async function loadData() {
+        let ml = await loadJSON("ml.json");
+        let finance = await loadJSON("finance.json");
+
+        if (!ml) {
+          const s = document.getElementById("fallback-ml");
+          if (s) ml = JSON.parse(s.textContent);
+        }
+        if (!finance) {
+          const s = document.getElementById("fallback-finance");
+          if (s) finance = JSON.parse(s.textContent);
+        }
+
+        if (!ml && !finance) {
+          document.querySelector(".container").innerHTML =
+            '<p style="text-align:center;padding:40px;color:#555770;">Unable to load data. Make sure ml.json and finance.json are in the same folder.</p>';
+          return;
+        }
+
+        if (ml) newsletters.ml = ml;
+        if (finance) newsletters.finance = finance;
+
+        document.getElementById("author-link").href = PROFILE.linkedin_url;
+        document.getElementById("author-link").textContent = PROFILE.name;
+        document.getElementById("profile-btn").href = PROFILE.linkedin_url;
+
+        const hash = window.location.hash.replace("#", "");
+        if (hash === "ml" || hash === "finance") activeTab = hash;
+
+        render();
+      }
+
+      function getNewsletter(id) {
+        return newsletters[id];
+      }
+
+      function getAllEditions(newsletter) {
+        const editions = [];
+        newsletter.blocks.forEach((block) => {
+          block.editions.forEach((ed) =>
+            editions.push({ ...ed, block: block.name })
+          );
+        });
+        return editions;
+      }
+
+      function render() {
+        const newsletter = getNewsletter(activeTab);
+        const allEditions = getAllEditions(newsletter);
+        const published = allEditions.filter((e) => e.status === "published");
+        const planned = allEditions.filter((e) => e.status === "planned");
+        const writing = allEditions.filter((e) => e.status === "writing");
+        const total = allEditions.length;
+
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.tab === activeTab);
+        });
+
+        document.getElementById("subscribe-btn").href =
+          PROFILE.subscribe_urls[activeTab];
+
+        const pct = total > 0 ? (published.length / total) * 100 : 0;
+        document.getElementById("progress-label").textContent = newsletter.name;
+        document.getElementById(
+          "progress-count"
+        ).textContent = `${published.length}/${total} Published`;
+        document.getElementById("progress-fill").style.width = pct + "%";
+
+        renderLatest(published);
+        renderUpcoming(writing, planned);
+        renderBlocks(newsletter);
+
+        window.location.hash = activeTab;
+      }
+
+      function renderLatest(published) {
+        const section = document.getElementById("latest-section");
+        const card = document.getElementById("latest-card");
+
+        if (published.length === 0) {
+          section.style.display = "none";
+          return;
+        }
+
+        section.style.display = "block";
+        const latest = published[published.length - 1];
+        card.innerHTML = `
+                <div class="edition-num">Edition ${latest.number}</div>
+                <h2>${latest.title}</h2>
+                <p class="hook">"${latest.hook}"</p>
+                <div class="meta">
+                    <span class="date">${formatDate(
+                      latest.published_date
+                    )}</span>
+                    ${
+                      latest.linkedin_url && latest.linkedin_url !== "#"
+                        ? `<a href="${latest.linkedin_url}" target="_blank" class="read-btn">Read on LinkedIn &rarr;</a>`
+                        : `<span class="read-btn" style="opacity:0.5">Link coming soon</span>`
+                    }
+                </div>
+            `;
+      }
+
+      function renderUpcoming(writing, planned) {
+        const section = document.getElementById("upcoming-section");
+        const grid = document.getElementById("upcoming-grid");
+
+        const upcoming = planned.slice(0, 2);
+
+        if (upcoming.length === 0) {
+          section.style.display = "none";
+          return;
+        }
+
+        section.style.display = "block";
+        grid.innerHTML = upcoming
+          .map(
+            (ed) => `
+                <div class="upcoming-card">
+                    <div class="edition-num">Edition ${ed.number}</div>
+                    <h3>${ed.title}</h3>
+                    <p class="hook">"${ed.hook}"</p>
+                    <span class="badge badge-soon">Up Next</span>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      function renderBlocks(newsletter) {
+        const container = document.getElementById("blocks-container");
+        container.innerHTML = newsletter.blocks
+          .map((block, i) => {
+            const pubCount = block.editions.filter(
+              (e) => e.status === "published"
+            ).length;
+            const total = block.editions.length;
+            const pct = total > 0 ? (pubCount / total) * 100 : 0;
+            const isComplete = pubCount === total;
+            const hasPublished = pubCount > 0;
+
+            return `
+                    <div class="block ${
+                      hasPublished ? "open" : ""
+                    }" data-block="${i}">
+                        <div class="block-header" onclick="toggleBlock(${i})">
+                            <div class="block-header-left">
+                                <h3>${block.name}</h3>
+                            </div>
+                            <div class="block-progress">
+                                <span>${pubCount}/${total}</span>
+                                <div class="block-progress-bar">
+                                    <div class="block-progress-fill" style="width:${pct}%;${
+              isComplete ? "background:var(--green)" : ""
+            }"></div>
+                                </div>
+                                <span class="block-chevron">&#9660;</span>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            ${block.editions
+                              .map((ed) => renderEditionItem(ed))
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+          })
+          .join("");
+      }
+
+      function renderEditionItem(ed) {
+        const statusClass =
+          ed.status === "published"
+            ? "status-published"
+            : ed.status === "writing"
+            ? "status-writing"
+            : "status-planned";
+
+        const statusIcon =
+          ed.status === "published"
+            ? "&#10003;"
+            : ed.status === "writing"
+            ? "&#9998;"
+            : "&#9679;";
+
+        const link =
+          ed.status === "published" &&
+          ed.linkedin_url &&
+          ed.linkedin_url !== "#"
+            ? `<a href="${ed.linkedin_url}" target="_blank" class="edition-link">Read &rarr;</a>`
+            : ed.status === "published"
+            ? `<span class="planned-text">Link soon</span>`
+            : ed.status === "writing"
+            ? `<span class="badge badge-writing" style="margin:0">Writing</span>`
+            : `<span class="planned-text">Coming soon</span>`;
+
+        return `
+                <div class="edition-item">
+                    <div class="edition-status ${statusClass}">${statusIcon}</div>
+                    <div class="edition-info">
+                        <span class="num">Edition ${ed.number}</span>
+                        <h4>${ed.title}</h4>
+                        <p class="hook">"${ed.hook}"</p>
+                        ${
+                          ed.published_date
+                            ? `<p class="date">${formatDate(
+                                ed.published_date
+                              )}</p>`
+                            : ""
+                        }
+                    </div>
+                    ${link}
+                </div>
+            `;
+      }
+
+      function toggleBlock(index) {
+        const block = document.querySelector(`.block[data-block="${index}"]`);
+        block.classList.toggle("open");
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return "";
+        const d = new Date(dateStr);
+        return d.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        });
+      }
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeTab = btn.dataset.tab;
+          render();
+        });
+      });
+
+      loadData();
+    </script>
+
+    <script>
+      // Scroll-based gradient background — lightens as you scroll
+      (function() {
+        const start = [20, 25, 34];
+        const end = [55, 65, 83];
+
+        function updateBg() {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+
+          const r = Math.round(start[0] + (end[0] - start[0]) * progress);
+          const g = Math.round(start[1] + (end[1] - start[1]) * progress);
+          const b = Math.round(start[2] + (end[2] - start[2]) * progress);
+
+          document.body.style.background = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        window.addEventListener('scroll', updateBg);
+        updateBg();
+      })();
+    </script>
+
+    <script>
+      // Header starfield — slowly drifting stars
+      (function() {
+        const canvas = document.getElementById('header-stars');
+        const ctx = canvas.getContext('2d');
+        const header = canvas.parentElement;
+
+        let drawW, drawH;
+
+        function resize() {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          drawW = header.offsetWidth;
+          drawH = header.offsetHeight;
+          canvas.width = drawW * dpr;
+          canvas.height = drawH * dpr;
+          canvas.style.width = drawW + 'px';
+          canvas.style.height = drawH + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        const stars = [];
+        const count = window.innerWidth < 600 ? 270 : 580;
+        for (let i = 0; i < count; i++) {
+          stars.push({
+            x: Math.random(),
+            y: Math.pow(Math.random(), 1.4),
+            r: Math.random() < 0.9 ? Math.random() * 1.0 + 0.2 : Math.random() * 2.2 + 1,
+            opacity: Math.random() * 0.7 + 0.3,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            twinkleOffset: Math.random() * Math.PI * 2,
+            driftX: (Math.random() - 0.5) * 0.00004,
+            driftY: (Math.random() - 0.5) * 0.00002,
+            color: Math.random() < 0.7 ? '#ffffff' :
+                   Math.random() < 0.5 ? '#c4b5fd' :
+                   Math.random() < 0.5 ? '#93c5fd' : '#fde68a'
+          });
+        }
+
+        function drawStars() {
+          ctx.clearRect(0, 0, drawW, drawH);
+          const time = Date.now() * 0.001;
+
+          stars.forEach(s => {
+            s.x += s.driftX;
+            s.y += s.driftY;
+            if (s.x < 0) s.x = 1;
+            if (s.x > 1) s.x = 0;
+            if (s.y < 0) s.y = 1;
+            if (s.y > 1) s.y = 0;
+
+            const twinkle = 0.5 + 0.5 * Math.sin(time * s.twinkleSpeed * 60 + s.twinkleOffset);
+            const alpha = s.opacity * (0.4 + 0.6 * twinkle);
+            const x = s.x * drawW;
+            const y = s.y * drawH;
+
+            ctx.beginPath();
+            ctx.arc(x, y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = s.color;
+            ctx.globalAlpha = alpha;
+            ctx.fill();
+
+            if (s.r > 1.5) {
+              const glow = ctx.createRadialGradient(x, y, 0, x, y, s.r * 3);
+              glow.addColorStop(0, s.color);
+              glow.addColorStop(1, 'transparent');
+              ctx.beginPath();
+              ctx.arc(x, y, s.r * 3, 0, Math.PI * 2);
+              ctx.fillStyle = glow;
+              ctx.globalAlpha = alpha * 0.2;
+              ctx.fill();
+            }
+          });
+
+          ctx.globalAlpha = 1;
+          requestAnimationFrame(drawStars);
+        }
+
+        resize();
+        drawStars();
+        window.addEventListener('resize', resize);
+      })();
+    </script>
+  </body>
+</html>

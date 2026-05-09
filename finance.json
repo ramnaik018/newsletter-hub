@@ -1,0 +1,346 @@
+{
+  "id": "finance",
+  "name": "Finance & Wall Street",
+  "description": "Making Wall Street concepts intuitive for tech people entering finance",
+  "blocks": [
+    {
+      "name": "How Money Moves",
+      "editions": [
+        {
+          "number": 1,
+          "title": "What Do Investment Banks Actually DO?",
+          "hook": "They don't invest. They advise. Here's the real business model.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 2,
+          "title": "M&A: How a Company Gets Sold",
+          "hook": "30 buyers, blind bids, competitive tension — billion-dollar stakes.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 3,
+          "title": "IPO: From Private to Public",
+          "hook": "The journey from startup to stock ticker — and why banks charge millions.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 4,
+          "title": "Debt vs Equity: How Companies Raise Money",
+          "hook": "Why would a profitable company borrow? Because it's cheaper than selling ownership.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 5,
+          "title": "The Buy Side vs Sell Side",
+          "hook": "Two sides of finance that confuse everyone — explained in 5 minutes.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 6,
+          "title": "How Banks Actually Make Money",
+          "hook": "A 0.5% fee on a $10B deal = $50M. That's the business.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Valuation — How Everything Gets a Price",
+      "editions": [
+        {
+          "number": 7,
+          "title": "DCF: Discounting the Future",
+          "hook": "A company is worth its future cash flows, discounted to today.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 8,
+          "title": "Comparable Companies (Comps)",
+          "hook": "Netflix is worth what? Look at what Disney and Warner trade at.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 9,
+          "title": "Enterprise Value vs Equity Value",
+          "hook": "The most asked interview question at Goldman — and why it confuses everyone.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 10,
+          "title": "EBITDA: The Metric Bankers Worship",
+          "hook": "Why not just use profit? Because EBITDA strips out the noise.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 11,
+          "title": "Multiples: P/E, EV/EBITDA, EV/Revenue",
+          "hook": "One number that tells you if a stock is cheap or expensive.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 12,
+          "title": "LBO: How Private Equity Buys with Debt",
+          "hook": "Buy a company with 70% borrowed money, fix it, sell for 3x. That's PE.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "The Three Financial Statements",
+      "editions": [
+        {
+          "number": 13,
+          "title": "Income Statement: The Report Card",
+          "hook": "Revenue → expenses → profit. But which profit? There are 5 types.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 14,
+          "title": "Balance Sheet: The Snapshot",
+          "hook": "Assets = Liabilities + Equity. The equation that runs all of finance.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 15,
+          "title": "Cash Flow Statement: The Truth Teller",
+          "hook": "A profitable company can go bankrupt. Cash flow tells you why.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 16,
+          "title": "How the 3 Statements Link Together",
+          "hook": "Change one number → all three statements change. Here's exactly how.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 17,
+          "title": "Reading Real Financials (TCS/Reliance)",
+          "hook": "Let's open TCS's actual annual report and decode it line by line.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Markets & Products",
+      "editions": [
+        {
+          "number": 18,
+          "title": "Stocks, Bonds, Derivatives — The Building Blocks",
+          "hook": "Three instruments. Every other product is built from these.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 19,
+          "title": "How the Stock Market Actually Works",
+          "hook": "When you click 'buy' on Zerodha, here's what happens in 0.003 seconds.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 20,
+          "title": "Mutual Funds, ETFs, PMS, AIF",
+          "hook": "The hierarchy of investment products in India — and who buys what.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 21,
+          "title": "Risk: Alpha, Beta, Sharpe, Drawdown",
+          "hook": "Four numbers that tell you if a portfolio manager is actually good.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 22,
+          "title": "Interest Rates: How RBI/Fed Controls Everything",
+          "hook": "One number changes → every asset in the world reprices.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Roles, Workflows & Structure",
+      "editions": [
+        {
+          "number": 23,
+          "title": "A Day in the Life: IB Analyst vs Quant vs PM",
+          "hook": "Three finance jobs, three completely different realities.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 24,
+          "title": "How a Deal Gets Done: Inside an M&A",
+          "hook": "From pitch to close — the 6-month marathon nobody tells you about.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 25,
+          "title": "Trading Floor: How Market Making Works",
+          "hook": "You don't bet on stocks. You provide liquidity. The spread is your profit.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 26,
+          "title": "Wealth Management: How the Rich Invest",
+          "hook": "HNIs don't buy mutual funds on Groww. Here's what they actually do.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 27,
+          "title": "Fund Structures: PE, VC, Hedge Fund, AM",
+          "hook": "All 'buy side' but completely different animals.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "AI + Finance — The Intersection",
+      "editions": [
+        {
+          "number": 28,
+          "title": "How JPMorgan Uses AI Internally",
+          "hook": "DocLLM, IndexGPT, COiN — $12B tech budget doing what?",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 29,
+          "title": "AI in Wealth Management: Robo-Advisors",
+          "hook": "From Wealthfront to internal tools — how AI manages money.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 30,
+          "title": "NLP in Finance: Reading Documents at Scale",
+          "hook": "CAS statements, annual reports — how machines process them.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 31,
+          "title": "AI for Risk & Compliance",
+          "hook": "AML, KYC, fraud detection — where AI saves banks billions.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 32,
+          "title": "Algorithmic Trading & Quant Strategies",
+          "hook": "How math PhDs and Python replaced gut-feel traders.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 33,
+          "title": "The Future: What Finance Jobs Are AI-Proof?",
+          "hook": "An honest breakdown of what gets automated and what doesn't.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "India-Specific Finance",
+      "editions": [
+        {
+          "number": 34,
+          "title": "SEBI: The Watchdog of Indian Markets",
+          "hook": "One regulator, 50+ circulars per year — how SEBI shapes everything.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 35,
+          "title": "Indian AMC Business: Behind the Scenes",
+          "hook": "What happens between your SIP click and your NAV update.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 36,
+          "title": "UPI, NPCI & India's Payment Revolution",
+          "hook": "How India built the world's most advanced payment system.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 37,
+          "title": "Indian Startup Ecosystem: VC/PE Landscape",
+          "hook": "From angel to IPO — how Indian startups get funded.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 38,
+          "title": "GST, TDS & Corporate Tax",
+          "hook": "The tax stack every Indian company navigates.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    }
+  ]
+}

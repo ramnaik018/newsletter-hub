@@ -1,0 +1,298 @@
+{
+  "id": "ml",
+  "name": "AI / ML / GenAI",
+  "description": "Breaking down AI, ML & GenAI — no jargon, just intuition",
+  "blocks": [
+    {
+      "name": "ML Foundations",
+      "editions": [
+        {
+          "number": 1,
+          "title": "AI vs ML vs DL: What's the Difference?",
+          "hook": "Everyone uses these terms interchangeably. They shouldn't.",
+          "status": "published",
+          "linkedin_url": "https://www.linkedin.com/pulse/edition-1-ai-ml-dl-why-matters-you-guguloth-ramnaik-btbxc/?trackingId=EacGnzXUSbSsaGLdAxn8qQ%3D%3D",
+          "published_date": "2026-04-14"
+        },
+        {
+          "number": 2,
+          "title": "The ABCs of Machine Learning",
+          "hook": "Metrics, train/test splits, linear models, and feature engineering — the nuts and bolts.",
+          "status": "published",
+          "linkedin_url": "https://www.linkedin.com/pulse/edition-2-nuts-bolts-machine-learning-guguloth-ramnaik-7sn5c/?trackingId=moegxf0YSDWd27wiCmkVTQ%3D%3D",
+          "published_date": "2026-04-21"
+        },
+        {
+          "number": 3,
+          "title": "The Confusion Matrix: When 95% Accuracy Means Nothing",
+          "hook": "A fraud detector with 99% accuracy that catches zero frauds. How?",
+          "status": "published",
+          "linkedin_url": "https://www.linkedin.com/pulse/edition-3-confusion-matrix-why-accuracy-alone-lie-guguloth-ramnaik-mkznc/?trackingId=2FPPVfOvRoy8QhYyFD41%2BA%3D%3D",
+          "published_date": "2026-04-28"
+        },
+        {
+          "number": 4,
+          "title": "Gradient Descent & Partial Derivatives",
+          "hook": "Brute force takes longer than the age of the universe. Calculus takes seconds.",
+          "status": "published",
+          "linkedin_url": "https://www.linkedin.com/pulse/edition-4-gradient-descent-math-makes-machines-learn-ramnaik-zzflc/?trackingId=2L3sFUlvTgaFHZCFrHKAZw%3D%3D",
+          "published_date": "2026-05-05"
+        }
+      ]
+    },
+    {
+      "name": "Deep Learning Foundations",
+      "editions": [
+        {
+          "number": 5,
+          "title": "From Linear Models to Neural Networks",
+          "hook": "A linear model is just one neuron. Stack hundreds — now you have a brain.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 6,
+          "title": "Training a Neural Network: Backpropagation",
+          "hook": "Gradient descent for one layer was easy. For 50 layers? That's backprop.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 7,
+          "title": "Neural Network Architecture Decisions",
+          "hook": "How many layers? How many neurons? Here's how to think about it.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 8,
+          "title": "Overfitting in Deep Learning",
+          "hook": "Your neural net memorized 50,000 images perfectly. It still can't recognize a cat.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Computer Vision",
+      "editions": [
+        {
+          "number": 9,
+          "title": "CNNs: How Machines See Images",
+          "hook": "An image is just a matrix of numbers. A CNN finds patterns — edges, shapes, faces.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 10,
+          "title": "CNN Architectures: LeNet to ResNet",
+          "hook": "In 2012, a CNN beat humans at image recognition. Here's what changed.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 11,
+          "title": "Transfer Learning & Practical CV",
+          "hook": "Why train from scratch when someone already trained on 14 million images?",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "NLP — From Text to Intelligence",
+      "editions": [
+        {
+          "number": 12,
+          "title": "Classic NLP: Bag of Words & TF-IDF",
+          "hook": "Before ChatGPT, machines counted words. Literally.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 13,
+          "title": "Word Embeddings: Meaning as Numbers",
+          "hook": "king - man + woman = queen. That equation works because of embeddings.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 14,
+          "title": "RNNs & LSTMs: When Order Matters",
+          "hook": "'Dog bites man' vs 'man bites dog' — same words, opposite meaning.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 15,
+          "title": "The Attention Mechanism",
+          "hook": "Instead of compressing a sentence into one vector, let the model look back.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 16,
+          "title": "Transformers: The Architecture Behind Everything",
+          "hook": "RNNs process words one by one. Transformers process ALL simultaneously.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 17,
+          "title": "Tokenization Deep Dive: BPE & Tiktoken",
+          "hook": "GPT doesn't read words. It reads chunks. 'unfortunately' = 'un' + 'fortunate' + 'ly'.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "LLMs & GenAI Core",
+      "editions": [
+        {
+          "number": 18,
+          "title": "How LLMs Are Trained: Pretraining & Scaling",
+          "hook": "GPT-4 read the entire internet. Here's what 'training' means at that scale.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 19,
+          "title": "RLHF: How ChatGPT Became Helpful",
+          "hook": "Raw GPT is a text predictor. RLHF turned it into an assistant.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 20,
+          "title": "Prompt Engineering",
+          "hook": "The difference between a useless answer and a brilliant one? How you asked.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 21,
+          "title": "Function Calling & Structured Outputs",
+          "hook": "LLMs can't browse the web alone. Function calling gives them tools.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 22,
+          "title": "Embeddings for Search & RAG",
+          "hook": "How does ChatGPT 'know' your uploaded PDF? It doesn't. It searches it.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 23,
+          "title": "RAG: Retrieval Augmented Generation",
+          "hook": "LLMs hallucinate. RAG forces them to answer from YOUR data.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Building & Deploying GenAI",
+      "editions": [
+        {
+          "number": 24,
+          "title": "Evaluating GenAI Applications",
+          "hook": "Your chatbot answers questions. But is it answering CORRECTLY?",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 25,
+          "title": "Fine-Tuning LLMs: LoRA & QLoRA",
+          "hook": "OpenAI's model is generic. YOUR model should know YOUR domain.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 26,
+          "title": "Distillation & Quantization",
+          "hook": "GPT-4 costs $0.03 per query. A distilled model costs $0.0001.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 27,
+          "title": "AI Agents: LLMs That Take Actions",
+          "hook": "A chatbot answers questions. An agent books your flight and sends the email.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 28,
+          "title": "MCP & Advanced LLM Patterns",
+          "hook": "Model Context Protocol: the USB-C of AI — one standard to connect LLMs to anything.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    },
+    {
+      "name": "Production & Career",
+      "editions": [
+        {
+          "number": 29,
+          "title": "Deploying GenAI: FastAPI + Docker",
+          "hook": "Your Jupyter notebook doesn't serve 1000 users. Here's how to actually deploy.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 30,
+          "title": "LLM System Design",
+          "hook": "Interviewer: 'Design a support chatbot for a bank.' Here's how to answer.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 31,
+          "title": "The GenAI Engineer Toolkit",
+          "hook": "LangChain, LlamaIndex, vector DBs — the stack that gets you hired.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        },
+        {
+          "number": 32,
+          "title": "GenAI in Finance",
+          "hook": "Document processing, risk models, robo-advisors — the real use cases.",
+          "status": "planned",
+          "linkedin_url": null,
+          "published_date": null
+        }
+      ]
+    }
+  ]
+}
